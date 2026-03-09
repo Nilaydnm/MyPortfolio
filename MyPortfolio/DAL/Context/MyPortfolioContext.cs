@@ -5,9 +5,9 @@ namespace MyPortfolio.DAL.Context
 {
     public class MyPortfolioContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public MyPortfolioContext(DbContextOptions<MyPortfolioContext> options)
+         : base(options)
         {
-         optionsBuilder.UseSqlServer("Server=DESKTOP-ER2G3CQ\\MSSQLSERVER02;Database=MyPortfolioDb;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;");
         }
 
         public DbSet<About> Abouts { get; set; }

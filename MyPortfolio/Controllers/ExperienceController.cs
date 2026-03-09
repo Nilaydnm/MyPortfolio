@@ -5,10 +5,15 @@ namespace MyPortfolio.Controllers
 {
     public class ExperienceController : Controller
     {
-        MyPortfolioContext context = new MyPortfolioContext();
+        private readonly MyPortfolioContext _context;
+
+        public ExperienceController(MyPortfolioContext context)
+        {
+            _context = context;
+        }
         public IActionResult ExperienceList()
         {
-            var values = context.Experiences.ToList();
+            var values =_context.Experiences.ToList();
             return View(values);
         }
     }

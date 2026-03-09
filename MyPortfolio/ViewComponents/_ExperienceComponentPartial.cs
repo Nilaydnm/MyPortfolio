@@ -5,10 +5,15 @@ namespace MyPortfolio.ViewComponents
 {
     public class _ExperienceComponentPartial:ViewComponent
     {
-        MyPortfolioContext context = new MyPortfolioContext();
+        private readonly MyPortfolioContext _context;
+
+        public _ExperienceComponentPartial(MyPortfolioContext context)
+        {
+            _context = context;
+        }
         public IViewComponentResult Invoke()
         {
-            var values = context.Experiences.ToList();
+            var values = _context.Experiences.ToList();
             return View(values);
         }
     }
