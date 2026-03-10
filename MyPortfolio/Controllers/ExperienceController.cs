@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyPortfolio.DAL.Context;
+using MyPortfolio.DAL.Entities;
 
 namespace MyPortfolio.Controllers
 {
@@ -13,8 +14,22 @@ namespace MyPortfolio.Controllers
         }
         public IActionResult ExperienceList()
         {
-            var values =_context.Experiences.ToList();
+            var values = _context.Experiences.ToList();
             return View(values);
+        }
+
+        [HttpGet]
+        public IActionResult CreateExperience()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateExperience(Experience experience)
+        {
+            _context.Experiences.Add(experience);
+            _context.SaveChanges();
+            return RedirectToAction("ExperienceList");
         }
     }
 }
